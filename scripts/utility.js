@@ -25,3 +25,12 @@ function getRandAlphabet(){
     return alphabet;
     
 }
+
+function addKeyHighlightColor(elementId) {
+    const element = document.getElementById(elementId);
+    element.classList.add('bg-yellow-400');
+}
+function removeKeyHighlightColor(elementId) {
+    const element = document.getElementById(elementId);
+    element.classList.remove('bg-yellow-400');
+}

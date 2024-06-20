@@ -2,12 +2,15 @@
 function continueGame() {
     //generating random alphabet is first step 
     const alphabet = getRandAlphabet();
-    console.log(alphabet);
+    //console.log(alphabet);
 
     //set randomly generated alphabet to the screen (show it)
     
     const currentAlphabetElement = document.getElementById('current-alphabet');
     currentAlphabetElement.innerText = alphabet;
+
+    //set background color
+    addKeyHighlightColor(alphabet);
 
     
 }
