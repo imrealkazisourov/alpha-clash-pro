@@ -10,27 +10,23 @@ function handleKeyboardKeyUpEvent(event){
     //check matched or not 
     if (playerPressed === expectedAlphabet) {
         //update score
-        const currentScoreElement = document.getElementById('current-score');
-        const currentScoreText = currentScoreElement.innerText;
-        const currentScore = parseInt(currentScoreText);
+        const currentScore = getTextElementValueById('current-score');
+
         // new score
         const newScore = currentScore + 1;
-
-        currentScoreElement.innerText = newScore;
+        setTextElementValueById('current-score', newScore);
         
-
         // start a new round
         removeKeyHighlightColor(expectedAlphabet);
         continueGame();
     }
     else {
-        const currentLifeElement = document.getElementById('current-life');
-        const currentLifeText = currentLifeElement.innerText;
-        const currentLife = parseInt(currentLifeText);
+        const currentLife = getTextElementValueById('current-life');
 
         const updateLife = currentLife - 1;
+        setTextElementValueById('current-life', updateLife);
 
-        currentLifeElement.innerText = updateLife;
+
     }
 }
 
