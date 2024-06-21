@@ -1,6 +1,10 @@
 function handleKeyboardKeyUpEvent(event){
     const playerPressed = event.key;
-    console.log(playerPressed);
+    
+    // stop the game if player pressed escaped button
+    if (playerPressed === 'Escape'){
+        gameOver();
+    }
     
     const currentAlphabetElement = document.getElementById('current-alphabet');
     const currentAlphabet = currentAlphabetElement.innerText;
@@ -26,6 +30,10 @@ function handleKeyboardKeyUpEvent(event){
         const updateLife = currentLife - 1;
         setTextElementValueById('current-life', updateLife);
 
+        if (updateLife === 0) {
+            gameOver();
+        }
+
 
     }
 }
@@ -37,8 +45,6 @@ document.addEventListener('keyup', handleKeyboardKeyUpEvent);
 function continueGame() {
     //generating random alphabet is first step 
     const alphabet = getRandAlphabet();
-    //console.log(alphabet);
-
     //set randomly generated alphabet to the screen (show it)
     
     const currentAlphabetElement = document.getElementById('current-alphabet');
@@ -52,7 +58,28 @@ function continueGame() {
 
 // home screen to game screen function 
 function playNow() {
+    // hide other screen and showing play ground screen
     hideElementById('home-screen');
+    hideElementById('final-score');
     showElementById('play-ground');
+
+    // reset life and score
+    setTextElementValueById('current-life', 5);
+    setTextElementValueById('current-score', 0);
+
+
     continueGame();
+}
+
+function gameOver() {
+    hideElementById('play-ground');
+    showElementById('final-score');
+    //setup end score 
+    const endScore = getTextElementValueById('current-score');
+    setTextElementValueById('end-score', endScore);
+
+    // clearing the alphabet Highlight color 
+    const currentAlphabet = getElementTextById('current-alphabet');
+    
+    removeKeyHighlightColor(currentAlphabet);
 }
